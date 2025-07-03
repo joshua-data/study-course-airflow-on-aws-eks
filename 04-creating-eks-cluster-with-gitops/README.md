@@ -1,3 +1,44 @@
+# Theory
+
+### AZs, VPCs, and Subnets in AWS
+
+- **Region**: A physical location of a data center (`asia-northest2`)
+- **AZ (Availability Zone)**: Group of logical data centers (`Availability Zone A`, `Availability Zone B`, `Availability Zone C`)
+- **VPC (Virtual Private Network)**: Resources within the same VPC can communicate with each other, but cannot reach resources in another VPC unless you explicitly allow it
+    - VPC can span multiple **AZs** within a single **Region**, which means you can have the same VPC covering multiple **AZs**.
+- **Subnet**: **VPC** can also be divided into smaller network segments called Subnet.
+    - A Subnet allows you to apply different access rules and place resources in different containers where those rules apply.
+
+![image.png](assets/1.png)
+
+### What is AWS EKS?
+
+- EKS = `Elastic Kubernetes Service`
+- Makes easy to deploy, manage, and scale containerized applications.
+- Orchestrate your containers.
+- Still need to configure VPCs, Subnets, IAM roles, SSH Keys, …
+- Integrated with AWS services (ECR, ELB, IAM)
+
+![image.png](assets/2.png)
+
+- EKS Manages the **Control Plane** instances across AZs, and detects and replaces the unhealthy **Control Plane** instances for you.
+
+### EKS Architecture Overview
+
+- This architecture has two VPCs.
+    - **VPC 1**: Control Plane and Etcd (EKS manages that for you.)
+    - **VPC 2**: Worker Nodes (You directly manages that.)
+
+![image.png](assets/3.png)
+
+### Namespaces in Kubernetes
+
+- Kubernetes namespaces help to virtually divide a kubernetes cluster.
+
+![image.png](assets/4.png)
+
+# Practice
+
 ### AWS CLI 설치 (aws configure를 완료하면, ~/.aws에 액세스 정보 저장됨!)
 ```bash
 brew install awscli
