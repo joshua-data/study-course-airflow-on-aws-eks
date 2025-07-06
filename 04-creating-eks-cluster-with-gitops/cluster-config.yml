@@ -28,3 +28,13 @@ managedNodeGroups:
         autoScaler: true
         cloudWatch: true
         externalDNS: true
+
+addons:
+  - name: vpc-cni
+    version: latest
+    attachPolicyARNs:
+      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+    podIdentityAssociations:
+      - namespace: kube-system
+        serviceAccountName: aws-node
+        roleARN: arn:aws:iam::131844918881:role/AmazonEKS_CNI_Policy_Role
