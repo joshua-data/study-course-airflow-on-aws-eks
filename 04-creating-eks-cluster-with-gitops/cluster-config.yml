@@ -3,7 +3,7 @@ kind: ClusterConfig
 
 metadata:
   name: airflow
-  region: ap-northeast-2
+  region: us-east-1
 
 managedNodeGroups:
   - name: workers
@@ -15,7 +15,7 @@ managedNodeGroups:
     volumeSize: 20
     ssh:
       allow: true
-      publicKeyName: airflow
+      publicKeyName: airflow-workstation
     labels: { role: worker }
     tags:
       nodegroup-role: worker
@@ -28,13 +28,3 @@ managedNodeGroups:
         autoScaler: true
         cloudWatch: true
         externalDNS: true
-
-addons:
-  - name: vpc-cni
-    version: latest
-    attachPolicyARNs:
-      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
-    podIdentityAssociations:
-      - namespace: kube-system
-        serviceAccountName: aws-node
-        roleARN: arn:aws:iam::131844918881:role/AmazonEKS_CNI_Policy_Role
