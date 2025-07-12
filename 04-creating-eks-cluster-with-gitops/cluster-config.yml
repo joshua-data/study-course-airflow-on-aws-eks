@@ -3,7 +3,7 @@ kind: ClusterConfig
 
 metadata:
   name: airflow
-  region: us-east-1
+  region: ap-northeast-2
 
 managedNodeGroups:
   - name: workers
@@ -15,7 +15,7 @@ managedNodeGroups:
     volumeSize: 20
     ssh:
       allow: true
-      publicKeyName: airflow-workstation
+      publicKeyName: airflow
     labels: { role: worker }
     tags:
       nodegroup-role: worker
